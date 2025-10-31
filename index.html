@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фотореалистичный AI — с нуля до продакшна</title>
+    
+    <!-- SEO & Social Sharing Meta Tags -->
+    <meta name="description" content="12 интенсивных модулей по созданию фотореалистичного AI контента. Предзапишись в закрытую группу — места ограничены.">
+    <meta property="og:title" content="Фотореалистичный AI — с нуля до продакшна">
+    <meta property="og:description" content="12 интенсивных модулей по созданию фотореалистичного AI контента. Предзапишись в закрытую группу — места ограничены.">
+    <meta property="og:image" content="https://i.pinimg.com/originals/a0/a7/1b/a0a71b3e8a7e3c1a3e8e1a7e2b7e2c9e.jpg">
+    <meta property="og:url" content="[YOUR_WEBSITE_URL_HERE]">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+          --bg: #0b0b0c;
+          --bg-elev: rgba(20, 20, 22, 0.6);
+          --fg: #f6f7f8;
+          --muted: #a9adb4;
+          --accent: #d1d5db; /* light metallic gray */
+          --glass-bg: rgba(255, 255, 255, 0.05); /* Increased transparency */
+          --glass-border: rgba(255, 255, 255, 0.2); /* Soft edge highlight */
+          --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+          --grad-1: linear-gradient(135deg, #ffffff 0%, #bfc3c9 35%, #0f1113 100%);
+          --grad-2: linear-gradient(135deg, #d4d7dd 0%, #8a8f98 40%, #0b0b0c 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--fg);
+            overflow-x: hidden;
+        }
+        
+        /* New "Crystal Clear Glass" effect based on reference */
+        .glass {
+            background-color: var(--glass-bg); 
+            /* Increased blur for a softer, more diffused look */
+            backdrop-filter: blur(24px) saturate(120%);
+            -webkit-backdrop-filter: blur(24px) saturate(120%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px; /* Larger, softer corners for all glass elements */
+            box-shadow: var(--shadow);
+        }
+
+        .animated-gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px; 
+            border-radius: 26px; /* Match the new larger border-radius */
+            background: conic-gradient(from 180deg at 50% 50%, #d4d7dd, #8a8f98, #d4d7dd, #ffffff, #d4d7dd);
+            animation: rotate 6s linear infinite;
+            z-index: -1;
+        }
+        
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
