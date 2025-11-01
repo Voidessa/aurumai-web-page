@@ -1,0 +1,92 @@
+import React, { useState, useEffect } from 'react';
+
+const Header: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
+  const closeMenu = () => setIsOpen(false);
+
+  const handleCTAClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    closeMenu();
+    const targetId = e.currentTarget.getAttribute('href')?.substring(1);
+    if (targetId) {
+      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+
+  const navLinks = (
+    <>
+      <a href="#program" onClick={closeMenu} className="text-muted hover:text-fg transition-colors block py-2 text-lg md:text-base md:p-0">Программа</a>
+      <a href="#pricing" onClick={closeMenu} className="text-muted hover:text-fg transition-colors block py-2 text-lg md:text-base md:p-0">Стоимость</a>
+      <a href="#faq" onClick={closeMenu} className="text-muted hover:text-fg transition-colors block py-2 text-lg md:text-base md:p-0">FAQ</a>
+    </>
+  );
+
+  return (
+    <>
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50">
+        <div className="relative glass px-4 sm:px-6 py-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <span className="font-bold text-xl bg-clip-text text-transparent bg-grad-2">AI Vision Pro</span>
+            </div>
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center space-x-8">
+              {navLinks}
+            </nav>
+            <div className="hidden md:block">
+              <a href="#preorder-form" onClick={handleCTAClick} className="bg-fg text-bg font-semibold py-2 px-5 rounded-lg hover:bg-accent transition-all">
+                Предзапись
+              </a>
+            </div>
+            {/* Mobile Nav Button */}
+            <div className="md:hidden">
+              <button onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu" className="p-2 -mr-2">
+                {isOpen ? (
+                    <svg className="w-6 h-6 text-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                ) : (
+                    <svg className="w-6 h-6 text-fg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`md:hidden fixed inset-0 z-40 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        onClick={closeMenu}
+      >
+        <div 
+          className="absolute inset-0 bg-black/30" 
+        ></div>
+        <div 
+            className={`absolute top-0 right-0 h-full w-4/5 max-w-xs glass transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+            onClick={(e) => e.stopPropagation()}
+        >
+          <nav className="pt-28 p-8 flex flex-col items-center text-center space-y-6">
+            {navLinks}
+            <a href="#preorder-form" onClick={handleCTAClick} className="w-full bg-fg text-bg font-semibold py-3 px-5 rounded-lg hover:bg-accent transition-all mt-4">
+              Предзапись
+            </a>
+          </nav>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Header;

@@ -1,0 +1,56 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Lead {
+  id         String     @id @default(cuid())
+  name       String
+  email      String     @unique
+  telegram   String?
+  experience String?
+  goal       String?
+  source     String?
+  utm        Json?
+  status     LeadStatus @default(NEW)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+model Inquiry {
+  id        String      @id @default(cuid())
+  kind      InquiryKind
+  name      String
+  email     String
+  telegram  String?
+  company   String?
+  message   String
+  source    String?
+  utm       Json?
+  createdAt DateTime    @default(now())
+}
+
+model EventLog {
+  id        String   @id @default(cuid())
+  type      String
+  payload   Json
+  createdAt DateTime @default(now())
+}
+
+enum LeadStatus {
+  NEW
+  VERIFIED
+  INVITED
+  WON
+  LOST
+}
+
+enum InquiryKind {
+  QUESTION
+  PARTNERSHIP
+}
+
