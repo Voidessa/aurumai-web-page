@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-// Конфигурация API (замените на URL вашего бекенда)
-const API_BASE_URL = (window as any).__API_BASE_URL__ || import.meta.env.VITE_API_BASE_URL || 'https://your-backend.vercel.app';
+// Конфигурация API - используем URL бекенда на Vercel
+const API_BASE_URL = (window as any).__API_BASE_URL__ || import.meta.env.VITE_API_BASE_URL || 'https://aurumai-web-page.vercel.app';
 
 const FinalCTA: React.FC = () => {
   const [form, setForm] = useState({

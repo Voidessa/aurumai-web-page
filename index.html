@@ -99,6 +99,8 @@
   };
   const source = (p.get('source') || '').trim(); // insta_course | insta_agency | telegram | seo
   window.__LEAD_CTX__ = { utm, source };
+  // Устанавливаем URL бекенда
+  window.__API_BASE_URL__ = 'https://aurumai-web-page.vercel.app';
 })();
 </script>
 </head>
