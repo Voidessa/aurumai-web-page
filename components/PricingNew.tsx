@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { buttonVariants } from "./ui/button";
+import { LiquidButton } from "./ui/liquid-button";
 import { useMediaQuery } from "../hooks/use-media-query";
 import { cn } from "../lib/utils";
 import { motion } from "framer-motion";
@@ -148,19 +148,24 @@ export function Pricing({
           className="flex flex-col items-center mb-10 gap-4"
         >
           {!hasDiscount && (
-            <motion.button
+            <motion.div
               ref={discountButtonRef}
-              onClick={handleDiscountClick}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3 }}
-              className="bg-gradient-to-r from-fg to-accent text-bg font-bold py-3 px-6 rounded-full hover:shadow-lg hover:shadow-fg/30 transition-all duration-300 text-sm md:text-base"
             >
-              🎉 Получить скидку -50%
-            </motion.button>
+              <LiquidButton
+                onClick={handleDiscountClick}
+                variant="default"
+                size="lg"
+                className="text-sm md:text-base"
+              >
+                🎉 Получить скидку -50%
+              </LiquidButton>
+            </motion.div>
           )}
           
           {hasDiscount && (
@@ -206,8 +211,8 @@ export function Pricing({
                 delay: index * 0.1,
               }}
               className={cn(
-                `rounded-2xl border-[1px] p-6 bg-black/[0.96] text-center lg:flex lg:flex-col lg:justify-center relative glass cursor-pointer transition-all`,
-                plan.isPopular ? "border-fg border-2 shadow-lg shadow-fg/20" : "border-glass-border",
+                `rounded-2xl border-[1px] p-5 bg-black/[0.96] text-center lg:flex lg:flex-col lg:justify-center relative glass cursor-pointer transition-all`,
+                plan.isPopular ? "border-fg border-2 shadow-lg shadow-fg/20 scale-105" : "border-glass-border",
                 "flex flex-col",
                 !plan.isPopular && "mt-5",
                 index === 0 || index === 2
@@ -217,10 +222,10 @@ export function Pricing({
               )}
             >
               {plan.isPopular && (
-                <div className="absolute top-0 right-0 bg-fg py-1 px-3 rounded-bl-xl rounded-tr-xl flex items-center">
-                  <StarIcon className="text-bg h-4 w-4 fill-current" />
-                  <span className="text-bg ml-1 font-sans font-semibold text-xs">
-                    Популярный
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-fg to-accent py-1.5 px-4 rounded-full flex items-center gap-1.5 shadow-lg">
+                  <StarIcon className="text-bg h-3.5 w-3.5 fill-current" />
+                  <span className="text-bg font-sans font-bold text-xs uppercase tracking-wide">
+                    Most Popular
                   </span>
                 </div>
               )}
@@ -228,7 +233,7 @@ export function Pricing({
                 <p className="text-base font-semibold text-muted uppercase tracking-wide">
                   {plan.name}
                 </p>
-                <div className="mt-6 flex flex-col items-center justify-center gap-1">
+                <div className="mt-4 flex flex-col items-center justify-center gap-1">
                   {hasDiscount && (
                     <motion.span
                       initial={{ opacity: 0 }}
@@ -266,7 +271,7 @@ export function Pricing({
                   )}
                 </div>
 
-                <p className="text-xs leading-5 text-muted mt-1">
+                <p className="text-xs leading-5 text-muted mt-0.5">
                   оплата помесячно
                 </p>
 
@@ -283,7 +288,7 @@ export function Pricing({
                   </motion.div>
                 )}
 
-                <ul className="mt-6 gap-3 flex flex-col">
+                <ul className="mt-4 gap-2 flex flex-col">
                   {plan.features.map((feature, idx) => (
                     <motion.li
                       key={idx}
@@ -306,9 +311,9 @@ export function Pricing({
                   ))}
                 </ul>
 
-                <hr className="w-full my-6 border-glass-border" />
+                <hr className="w-full my-4 border-glass-border" />
 
-                <motion.button
+                <LiquidButton
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
@@ -317,28 +322,13 @@ export function Pricing({
                       target.scrollIntoView({ behavior: 'smooth' });
                     }
                   }}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={cn(
-                    buttonVariants(plan.isPopular ? "default" : "outline"),
-                    "group relative w-full gap-2 overflow-hidden text-lg font-semibold tracking-tighter py-3",
-                    "transform-gpu transition-all duration-300 ease-out",
-                    "hover:ring-2 hover:ring-fg hover:ring-offset-2",
-                    "focus:outline-none focus:ring-2 focus:ring-fg focus:ring-offset-2",
-                    plan.isPopular
-                      ? "bg-fg text-bg hover:bg-accent hover:shadow-lg hover:shadow-fg/30"
-                      : "bg-transparent text-fg border-2 border-fg/50 hover:border-fg hover:bg-fg/10"
-                  )}
+                  variant="default"
+                  size="lg"
+                  className="w-full text-base font-semibold"
                 >
-                  <span className="relative z-10">{plan.buttonText}</span>
-                  {plan.isPopular && (
-                    <motion.span
-                      className="absolute inset-0 bg-gradient-to-r from-fg to-accent opacity-0 group-hover:opacity-100 transition-opacity"
-                      initial={false}
-                    />
-                  )}
-                </motion.button>
-                <p className="mt-4 text-xs leading-5 text-muted">
+                  {plan.buttonText}
+                </LiquidButton>
+                <p className="mt-3 text-xs leading-5 text-muted">
                   {plan.description}
                 </p>
               </div>

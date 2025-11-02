@@ -1,7 +1,5 @@
 import React from 'react';
 import { SplineScene } from './SplineScene';
-import { Spotlight } from './Spotlight';
-import { SparklesCore } from './ui/sparkles';
 import { Vortex } from './ui/vortex';
 import { LiquidButton } from './ui/liquid-button';
 
@@ -37,49 +35,14 @@ const Hero: React.FC = () => {
           />
         </div>
         
-        {/* Spotlight эффект */}
-        <Spotlight
-          className="-top-40 left-0 md:left-60 md:-top-20"
-          fill="white"
-        />
-        
         {/* Контент с двумя колонками */}
         <div className="flex flex-col md:flex-row h-full min-h-[500px] md:min-h-[600px] relative z-10">
           {/* Левая колонка - текст с Sparkles эффектом */}
           <div className="flex-1 p-8 md:p-12 relative z-10 flex flex-col justify-center">
-            {/* AURUM AI с Sparkles эффектом */}
-            <div className="relative flex flex-col items-start mb-6">
-              <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-white relative z-20 mb-4 whitespace-nowrap">
-                AURUM AI
-              </h1>
-              {/* Sparkles эффект под текстом - точная копия оригинального компонента */}
-              <div className="w-full md:w-[40rem] h-40 relative -mt-4">
-                {/* Gradients - горизонтальное свечение как в оригинале */}
-                <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-fg to-transparent h-[2px] w-3/4 blur-sm z-10" />
-                <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-fg to-transparent h-px w-3/4 z-10" />
-                <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-accent to-transparent h-[5px] w-1/4 blur-sm z-10" />
-                <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-accent to-transparent h-px w-1/4 z-10" />
-
-                {/* Sparkles Core компонент */}
-                <SparklesCore
-                  background="transparent"
-                  minSize={0.4}
-                  maxSize={1}
-                  particleDensity={1200}
-                  className="w-full h-full"
-                  particleColor="#FFFFFF"
-                />
-
-                {/* Radial Gradient для плавного исчезновения частиц по радиусу (не квадрат!) */}
-                <div 
-                  className="absolute inset-0 w-full h-full bg-black z-10 pointer-events-none"
-                  style={{
-                    maskImage: 'radial-gradient(ellipse 80% 100% at 50% 0%, transparent 0%, transparent 20%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 60%, black 100%)',
-                    WebkitMaskImage: 'radial-gradient(ellipse 80% 100% at 50% 0%, transparent 0%, transparent 20%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 60%, black 100%)'
-                  }}
-                ></div>
-              </div>
-            </div>
+            {/* AURUM AI */}
+            <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-white mb-6">
+              AURUM AI
+            </h1>
             
             <p className="mt-6 text-lg md:text-xl text-muted max-w-xl">
               Пройдите путь от новичка до профи в генерации изображений и видео с помощью нейросетей. Откройте новый источник дохода и творческой реализации.
