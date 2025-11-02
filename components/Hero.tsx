@@ -1,6 +1,7 @@
 import React from 'react';
 import { SplineScene } from './SplineScene';
 import { Spotlight } from './Spotlight';
+import { SparklesCore } from './ui/sparkles';
 
 const Hero: React.FC = () => {
 
@@ -27,15 +28,36 @@ const Hero: React.FC = () => {
         
         {/* Контент с двумя колонками */}
         <div className="flex flex-col md:flex-row h-full min-h-[500px] md:min-h-[600px]">
-          {/* Левая колонка - текст */}
+          {/* Левая колонка - текст с Sparkles эффектом */}
           <div className="flex-1 p-8 md:p-12 relative z-10 flex flex-col justify-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-fg to-muted leading-tight">
-              <span className="bg-clip-text text-transparent bg-grad-1">
-                Создавайте AI-контент,
-              </span>
-              <br />
-              который поражает воображение
-            </h1>
+            {/* AURUM AI с Sparkles эффектом */}
+            <div className="relative flex flex-col items-start mb-6">
+              <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-white relative z-20 mb-4">
+                AURUM AI
+              </h1>
+              {/* Sparkles эффект под текстом */}
+              <div className="w-full md:w-[600px] h-32 md:h-40 relative -mt-4">
+                {/* Gradients */}
+                <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-fg to-transparent h-[2px] w-full blur-sm" />
+                <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-fg to-transparent h-px w-full" />
+                <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-accent to-transparent h-[5px] w-1/3 blur-sm" />
+                <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-accent to-transparent h-px w-1/3" />
+
+                {/* Sparkles Core компонент */}
+                <SparklesCore
+                  background="transparent"
+                  minSize={0.4}
+                  maxSize={1}
+                  particleDensity={1200}
+                  className="w-full h-full"
+                  particleColor="#FFFFFF"
+                />
+
+                {/* Radial Gradient чтобы убрать резкие края */}
+                <div className="absolute inset-0 w-full h-full bg-black/[0.96] [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+              </div>
+            </div>
+            
             <p className="mt-6 text-lg md:text-xl text-muted max-w-xl">
               Пройдите путь от новичка до профи в генерации изображений и видео с помощью нейросетей. Откройте новый источник дохода и творческой реализации.
             </p>
