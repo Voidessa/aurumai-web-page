@@ -11,20 +11,28 @@ export async function saveLead(data: any) {
       create: { ...data }
     });
   }
-  // Google Sheets
-  let privateKey = (process.env.GOOGLE_SA_KEY || "").replace(/\\n/g, "\n");
-  // Убираем кавычки, если они есть
-  if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
-    privateKey = privateKey.slice(1, -1);
+  
+  // Если Google Sheets не настроен, просто логируем
+  if (!process.env.GOOGLE_SA_KEY || !process.env.GOOGLE_SA_EMAIL || !process.env.GOOGLE_SHEETS_ID) {
+    console.log('Lead submission (Google Sheets not configured):', data);
+    return { ok: true };
   }
-  const auth = new google.auth.JWT(
-    process.env.GOOGLE_SA_EMAIL,
-    undefined,
-    privateKey,
-    ["https://www.googleapis.com/auth/spreadsheets"]
-  );
-  const sheets = google.sheets({ version: "v4", auth });
-  const spreadsheetId = process.env.GOOGLE_SHEETS_ID!;
+  
+  // Google Sheets
+  try {
+    let privateKey = (process.env.GOOGLE_SA_KEY || "").replace(/\\n/g, "\n");
+    // Убираем кавычки, если они есть
+    if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
+      privateKey = privateKey.slice(1, -1);
+    }
+    const auth = new google.auth.JWT(
+      process.env.GOOGLE_SA_EMAIL,
+      undefined,
+      privateKey,
+      ["https://www.googleapis.com/auth/spreadsheets"]
+    );
+    const sheets = google.sheets({ version: "v4", auth });
+    const spreadsheetId = process.env.GOOGLE_SHEETS_ID!;
   
   // Проверяем и создаем лист "Leads" если нужно
   let range = "Leads!A:Z";
@@ -87,26 +95,31 @@ export async function saveLead(data: any) {
     }
   }
   
-  // Добавляем данные
-  await sheets.spreadsheets.values.append({
-    spreadsheetId,
-    range,
-    valueInputOption: "RAW",
-    requestBody: { 
-      values: [[
-        new Date().toISOString(), 
-        data.name, 
-        data.email, 
-        data.telegram || "", 
-        data.experience || "", 
-        data.goal || "",
-        data.source || "", 
-        JSON.stringify(data.utm || {}), 
-        "NEW"
-      ]] 
-    }
-  });
-  return { ok: true };
+    // Добавляем данные
+    await sheets.spreadsheets.values.append({
+      spreadsheetId,
+      range,
+      valueInputOption: "RAW",
+      requestBody: { 
+        values: [[
+          new Date().toISOString(), 
+          data.name, 
+          data.email, 
+          data.telegram || "", 
+          data.experience || "", 
+          data.goal || "",
+          data.source || "", 
+          JSON.stringify(data.utm || {}), 
+          "NEW"
+        ]] 
+      }
+    });
+    return { ok: true };
+  } catch (error: any) {
+    console.error('Google Sheets error:', error.message);
+    console.log('Lead submission (Google Sheets failed, logging only):', data);
+    return { ok: true };
+  }
 }
 
 export async function saveInquiry(data: any) {
