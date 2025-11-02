@@ -44,33 +44,79 @@ export function Pricing({
   description = "Выберите план, который подходит вам\nВсе планы включают доступ к платформе, инструментам генерации лидов и персональной поддержке.",
 }: PricingProps) {
   const [isMonthly, setIsMonthly] = useState(true);
+  const [hasDiscount, setHasDiscount] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
   const switchRef = useRef<HTMLButtonElement>(null);
+  const discountButtonRef = useRef<HTMLButtonElement>(null);
 
-  const handleToggle = async (checked: boolean) => {
-    setIsMonthly(!checked);
-    if (checked && switchRef.current && typeof window !== 'undefined') {
-      const rect = switchRef.current.getBoundingClientRect();
+  const triggerConfetti = async (ref: React.RefObject<HTMLElement>) => {
+    if (ref.current && typeof window !== 'undefined') {
+      const rect = ref.current.getBoundingClientRect();
       const x = rect.left + rect.width / 2;
       const y = rect.top + rect.height / 2;
 
-      // Dynamic import for confetti
       const confetti = (await import('canvas-confetti')).default;
+      
+      // Большой взрыв конфетти
       confetti({
-        particleCount: 50,
-        spread: 60,
+        particleCount: 100,
+        spread: 70,
         origin: {
           x: x / window.innerWidth,
           y: y / window.innerHeight,
         },
-        colors: ["#f6f7f8", "#d1d5db", "#a9adb4"],
-        ticks: 200,
+        colors: ["#f6f7f8", "#d1d5db", "#a9adb4", "#ffffff", "#e5e7eb"],
+        ticks: 300,
         gravity: 1.2,
         decay: 0.94,
-        startVelocity: 30,
-        shapes: ["circle"],
+        startVelocity: 40,
+        shapes: ["circle", "square"],
       });
+
+      // Дополнительные взрывы для большего эффекта
+      setTimeout(() => {
+        confetti({
+          particleCount: 50,
+          spread: 50,
+          origin: {
+            x: x / window.innerWidth,
+            y: y / window.innerHeight,
+          },
+          colors: ["#f6f7f8", "#d1d5db"],
+          ticks: 200,
+          gravity: 1.0,
+          startVelocity: 30,
+        });
+      }, 150);
     }
+  };
+
+  const handleToggle = async (checked: boolean) => {
+    setIsMonthly(!checked);
+    if (checked) {
+      await triggerConfetti(switchRef);
+    }
+  };
+
+  const handleDiscountClick = async () => {
+    if (!hasDiscount) {
+      setHasDiscount(true);
+      await triggerConfetti(discountButtonRef);
+    }
+  };
+
+  // Функция расчета цены со скидкой
+  const calculatePrice = (basePrice: string) => {
+    const price = parseFloat(basePrice);
+    if (hasDiscount) {
+      return Math.round(price * 0.5);
+    }
+    return price;
+  };
+
+  // Функция получения оригинальной цены
+  const getOriginalPrice = (plan: PricingPlan) => {
+    return isMonthly ? plan.price : plan.yearlyPrice;
   };
 
 
@@ -109,28 +155,59 @@ export function Pricing({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex justify-center items-center mb-10 gap-3 flex-wrap"
+          className="flex flex-col items-center mb-10 gap-4"
         >
-          <motion.span
-            animate={{ opacity: isMonthly ? 1 : 0.5 }}
-            className={cn("text-sm font-semibold transition-opacity", !isMonthly && "text-muted")}
-          >
-            Месячная оплата
-          </motion.span>
-          <Label className="cursor-pointer">
-            <Switch
-              ref={switchRef as any}
-              checked={!isMonthly}
-              onCheckedChange={handleToggle}
-              className="relative"
-            />
-          </Label>
-          <motion.span
-            animate={{ opacity: !isMonthly ? 1 : 0.5 }}
-            className={cn("text-sm font-semibold transition-opacity", isMonthly && "text-muted")}
-          >
-            Годовая оплата <span className="text-fg font-bold">(Экономия 20%)</span>
-          </motion.span>
+          <div className="flex justify-center items-center gap-3 flex-wrap">
+            <motion.span
+              animate={{ opacity: isMonthly ? 1 : 0.5 }}
+              className={cn("text-sm font-semibold transition-opacity", !isMonthly && "text-muted")}
+            >
+              Месячная оплата
+            </motion.span>
+            <Label className="cursor-pointer">
+              <Switch
+                ref={switchRef as any}
+                checked={!isMonthly}
+                onCheckedChange={handleToggle}
+                className="relative"
+              />
+            </Label>
+            <motion.span
+              animate={{ opacity: !isMonthly ? 1 : 0.5 }}
+              className={cn("text-sm font-semibold transition-opacity", isMonthly && "text-muted")}
+            >
+              Годовая оплата <span className="text-fg font-bold">(Экономия 20%)</span>
+            </motion.span>
+          </div>
+          
+          {!hasDiscount && (
+            <motion.button
+              ref={discountButtonRef}
+              onClick={handleDiscountClick}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3 }}
+              className="bg-gradient-to-r from-fg to-accent text-bg font-bold py-3 px-6 rounded-full hover:shadow-lg hover:shadow-fg/30 transition-all duration-300 text-sm md:text-base"
+            >
+              🎉 Получить скидку -50%
+            </motion.button>
+          )}
+          
+          {hasDiscount && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="bg-fg/10 border-2 border-fg px-6 py-3 rounded-full"
+            >
+              <span className="text-fg font-bold text-sm md:text-base">
+                ✨ Скидка -50% активирована!
+              </span>
+            </motion.div>
+          )}
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
@@ -184,19 +261,42 @@ export function Pricing({
                 <p className="text-base font-semibold text-muted uppercase tracking-wide">
                   {plan.name}
                 </p>
-                <div className="mt-6 flex items-center justify-center gap-x-2">
-                  <motion.span 
-                    key={isMonthly ? plan.price : plan.yearlyPrice}
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-5xl font-bold tracking-tight text-fg"
-                  >
-                    ${isMonthly ? plan.price : plan.yearlyPrice}
-                  </motion.span>
-                  <span className="text-sm font-semibold leading-6 tracking-wide text-muted">
-                    / {plan.period}
-                  </span>
+                <div className="mt-6 flex flex-col items-center justify-center gap-1">
+                  {hasDiscount && (
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="text-2xl font-bold text-muted line-through"
+                    >
+                      ${getOriginalPrice(plan)}
+                    </motion.span>
+                  )}
+                  <div className="flex items-center justify-center gap-x-2">
+                    <motion.span 
+                      key={`${isMonthly ? plan.price : plan.yearlyPrice}-${hasDiscount}`}
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className={cn(
+                        "text-5xl font-bold tracking-tight",
+                        hasDiscount ? "text-accent" : "text-fg"
+                      )}
+                    >
+                      ${calculatePrice(getOriginalPrice(plan))}
+                    </motion.span>
+                    <span className="text-sm font-semibold leading-6 tracking-wide text-muted">
+                      / {plan.period}
+                    </span>
+                  </div>
+                  {hasDiscount && (
+                    <motion.span
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-xs font-bold text-accent mt-1"
+                    >
+                      Экономия 50%
+                    </motion.span>
+                  )}
                 </div>
 
                 <p className="text-xs leading-5 text-muted mt-1">
