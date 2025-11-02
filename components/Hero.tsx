@@ -22,16 +22,19 @@ const Hero: React.FC = () => {
       {/* Контейнер с Card стилем */}
       <div className="w-full max-w-7xl mx-auto px-4 h-full min-h-[500px] md:min-h-[600px] bg-black/[0.96] rounded-2xl border border-glass-border relative overflow-hidden">
         {/* Vortex Background анимация */}
-        <Vortex
-          backgroundColor="transparent"
-          particleCount={500}
-          rangeY={800}
-          baseSpeed={0.0}
-          rangeSpeed={1.5}
-          baseRadius={1}
-          rangeRadius={2}
-          className="absolute inset-0 z-0"
-        />
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl">
+          <Vortex
+            backgroundColor="transparent"
+            particleCount={300}
+            rangeY={800}
+            baseSpeed={0.0}
+            rangeSpeed={1.5}
+            baseRadius={1}
+            rangeRadius={2}
+            className="w-full h-full"
+            containerClassName="w-full h-full"
+          />
+        </div>
         
         {/* Spotlight эффект */}
         <Spotlight

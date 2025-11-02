@@ -109,29 +109,29 @@ const FinalCTA: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label htmlFor="name" className="sr-only">Имя</label>
-                <input id="name" name="name" type="text" placeholder="Имя" required value={form.name} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" style={{ color: 'var(--fg)' }} />
+                <input id="name" name="name" type="text" placeholder="Имя" required value={form.name} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" style={{ color: '#f6f7f8' }} />
               </div>
               <div>
                 <label htmlFor="email" className="sr-only">Email</label>
-                <input id="email" name="email" type="email" placeholder="Email" required value={form.email} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" style={{ color: 'var(--fg)' }} />
+                <input id="email" name="email" type="email" placeholder="Email" required value={form.email} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" style={{ color: '#f6f7f8' }} />
               </div>
             </div>
              <div>
                 <label htmlFor="telegram" className="sr-only">@Telegram (необязательно)</label>
-                <input id="telegram" name="telegram" type="text" placeholder="@Telegram (необязательно)" value={form.telegram} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" style={{ color: 'var(--fg)' }} />
+                <input id="telegram" name="telegram" type="text" placeholder="@Telegram (необязательно)" value={form.telegram} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" style={{ color: '#f6f7f8' }} />
               </div>
             <div>
               <label htmlFor="experience" className="sr-only">Ваш опыт</label>
-              <select id="experience" name="experience" required value={form.experience} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent appearance-none" style={{ color: 'var(--fg)' }}>
-                <option value="" disabled>Ваш опыт в AI...</option>
-                <option value="новичок">Новичок</option>
-                <option value="средний">Средний</option>
-                <option value="про">Профессионал</option>
+              <select id="experience" name="experience" required value={form.experience} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent appearance-none" style={{ color: '#f6f7f8' }}>
+                <option value="" disabled style={{ backgroundColor: '#1a1a1a', color: '#9ca3af' }}>Ваш опыт в AI...</option>
+                <option value="новичок" style={{ backgroundColor: '#1a1a1a', color: '#f6f7f8' }}>Новичок</option>
+                <option value="средний" style={{ backgroundColor: '#1a1a1a', color: '#f6f7f8' }}>Средний</option>
+                <option value="про" style={{ backgroundColor: '#1a1a1a', color: '#f6f7f8' }}>Профессионал</option>
               </select>
             </div>
             <div>
               <label htmlFor="goal" className="sr-only">Ваша цель обучения</label>
-              <textarea id="goal" name="goal" placeholder="Ваша главная цель на курсе?" rows={3} value={form.goal} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" style={{ color: 'var(--fg)' }}></textarea>
+              <textarea id="goal" name="goal" placeholder="Ваша главная цель на курсе?" rows={3} value={form.goal} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" style={{ color: '#f6f7f8' }}></textarea>
             </div>
 
             <div className="flex items-start space-x-3">
