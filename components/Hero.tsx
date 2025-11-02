@@ -21,8 +21,8 @@ const Hero: React.FC = () => {
     <section id="hero" className="relative min-h-[80vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden py-20 md:py-32">
       {/* Контейнер с Card стилем */}
       <div className="w-full max-w-7xl mx-auto px-4 h-full min-h-[500px] md:min-h-[600px] bg-black/[0.96] rounded-2xl border border-glass-border relative overflow-hidden">
-        {/* Vortex Background анимация - временно отключен */}
-        {/* <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl pointer-events-none">
+        {/* Vortex Background анимация */}
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl pointer-events-none">
           <Vortex
             backgroundColor="transparent"
             particleCount={200}
@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
             className="w-full h-full pointer-events-none"
             containerClassName="w-full h-full pointer-events-none"
           />
-        </div> */}
+        </div>
         
         {/* Spotlight эффект */}
         <Spotlight
@@ -69,8 +69,8 @@ const Hero: React.FC = () => {
                   particleColor="#FFFFFF"
                 />
 
-                {/* Radial Gradient для затемнения частиц как в оригинале */}
-                <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)] z-10 pointer-events-none"></div>
+                {/* Radial Gradient для плавного исчезновения частиц по радиусу от центра */}
+                <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(ellipse_80%_100%_at_50%_0%,transparent_0%,transparent_30%,black_70%,black_100%)] z-10 pointer-events-none"></div>
               </div>
             </div>
             
