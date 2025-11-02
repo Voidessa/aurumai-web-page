@@ -2,6 +2,7 @@ import React from 'react';
 import { SplineScene } from './SplineScene';
 import { Spotlight } from './Spotlight';
 import { SparklesCore } from './ui/sparkles';
+import { Vortex } from './ui/vortex';
 
 const Hero: React.FC = () => {
 
@@ -20,6 +21,18 @@ const Hero: React.FC = () => {
     <section id="hero" className="relative min-h-[80vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden py-20 md:py-32">
       {/* Контейнер с Card стилем */}
       <div className="w-full max-w-7xl mx-auto px-4 h-full min-h-[500px] md:min-h-[600px] bg-black/[0.96] rounded-2xl border border-glass-border relative overflow-hidden">
+        {/* Vortex Background анимация */}
+        <Vortex
+          backgroundColor="transparent"
+          particleCount={500}
+          rangeY={800}
+          baseSpeed={0.0}
+          rangeSpeed={1.5}
+          baseRadius={1}
+          rangeRadius={2}
+          className="absolute inset-0 z-0"
+        />
+        
         {/* Spotlight эффект */}
         <Spotlight
           className="-top-40 left-0 md:left-60 md:-top-20"
@@ -27,7 +40,7 @@ const Hero: React.FC = () => {
         />
         
         {/* Контент с двумя колонками */}
-        <div className="flex flex-col md:flex-row h-full min-h-[500px] md:min-h-[600px]">
+        <div className="flex flex-col md:flex-row h-full min-h-[500px] md:min-h-[600px] relative z-10">
           {/* Левая колонка - текст с Sparkles эффектом */}
           <div className="flex-1 p-8 md:p-12 relative z-10 flex flex-col justify-center">
             {/* AURUM AI с Sparkles эффектом */}
