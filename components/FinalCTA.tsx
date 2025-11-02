@@ -51,6 +51,12 @@ const FinalCTA: React.FC = () => {
         turnstileToken: (window as any).turnstileToken // если используешь Turnstile
       };
 
+      // Временно: логируем данные в консоль и показываем успех
+      // TODO: Задеплоить backend и раскомментировать реальный API call
+      console.log('Lead submission:', payload);
+      
+      // Раскомментируйте после деплоя backend:
+      /*
       const response = await fetch(`${API_BASE_URL}/api/lead`, {
         method: 'POST',
         headers: {
@@ -64,6 +70,7 @@ const FinalCTA: React.FC = () => {
       if (!response.ok || !json.ok) {
         throw new Error(json.error || 'send_failed');
       }
+      */
       
       setIsSent(true);
     } catch (err: any) {
