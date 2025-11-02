@@ -69,8 +69,14 @@ const Hero: React.FC = () => {
                   particleColor="#FFFFFF"
                 />
 
-                {/* Radial Gradient для плавного исчезновения частиц по радиусу от центра */}
-                <div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(ellipse_80%_100%_at_50%_0%,transparent_0%,transparent_30%,black_70%,black_100%)] z-10 pointer-events-none"></div>
+                {/* Radial Gradient для плавного исчезновения частиц по радиусу (не квадрат!) */}
+                <div 
+                  className="absolute inset-0 w-full h-full bg-black z-10 pointer-events-none"
+                  style={{
+                    maskImage: 'radial-gradient(ellipse 80% 100% at 50% 0%, transparent 0%, transparent 20%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 60%, black 100%)',
+                    WebkitMaskImage: 'radial-gradient(ellipse 80% 100% at 50% 0%, transparent 0%, transparent 20%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 60%, black 100%)'
+                  }}
+                ></div>
               </div>
             </div>
             
