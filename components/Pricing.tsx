@@ -5,7 +5,7 @@ const plans = [
   {
     name: "СТАНДАРТ",
     price: "199",
-    yearlyPrice: "159",
+    yearlyPrice: "199",
     period: "месяц",
     features: [
       "12 модулей в записи",
@@ -22,7 +22,7 @@ const plans = [
   {
     name: "ПРОФИ",
     price: "399",
-    yearlyPrice: "319",
+    yearlyPrice: "399",
     period: "месяц",
     features: [
       "Все из тарифа «Стандарт»",
@@ -37,26 +37,7 @@ const plans = [
     buttonText: "Выбрать тариф",
     href: "#preorder-form",
     isPopular: true,
-  },
-  {
-    name: "МЕНТОРСТВО",
-    price: "999",
-    yearlyPrice: "799",
-    period: "месяц",
-    features: [
-      "Все из тарифа «Профи»",
-      "3 личные консультации",
-      "Помощь с портфолио",
-      "Личные рекомендации",
-      "Персональная программа",
-      "Круглосуточная поддержка",
-      "Индивидуальные разборы",
-      "Гарантия результата",
-    ],
-    description: "Для серьезных проектов и максимального результата",
-    buttonText: "Связаться с нами",
-    href: "#preorder-form",
-    isPopular: false,
+    spotsLeft: 5,
   },
 ];
 

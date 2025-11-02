@@ -2,6 +2,31 @@ import React, { useState, useEffect } from 'react';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [timeLeft, setTimeLeft] = useState({
+    hours: 3,
+    minutes: 0,
+    seconds: 0
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        let { hours, minutes, seconds } = prev;
+        
+        if (seconds > 0) {
+          return { ...prev, seconds: seconds - 1 };
+        } else if (minutes > 0) {
+          return { hours, minutes: minutes - 1, seconds: 59 };
+        } else if (hours > 0) {
+          return { hours: hours - 1, minutes: 59, seconds: 59 };
+        } else {
+          return { hours: 0, minutes: 0, seconds: 0 };
+        }
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -46,7 +71,13 @@ const Header: React.FC = () => {
             <nav className="hidden md:flex items-center space-x-8">
               {navLinks}
             </nav>
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center gap-4">
+              <div className="flex items-center gap-2 px-4 py-2 bg-fg/10 border border-fg/30 rounded-lg">
+                <span className="text-xs text-muted uppercase tracking-wider">Повышение цен через:</span>
+                <span className="text-fg font-bold text-lg tabular-nums">
+                  {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
+                </span>
+              </div>
               <a href="#preorder-form" onClick={handleCTAClick} className="bg-fg text-bg font-semibold py-2 px-5 rounded-lg hover:bg-accent transition-all">
                 Предзапись
               </a>
@@ -79,9 +110,17 @@ const Header: React.FC = () => {
         >
           <nav className="pt-28 p-8 flex flex-col items-center text-center space-y-6">
             {navLinks}
-            <a href="#preorder-form" onClick={handleCTAClick} className="w-full bg-fg text-bg font-semibold py-3 px-5 rounded-lg hover:bg-accent transition-all mt-4">
-              Предзапись
-            </a>
+            <div className="w-full flex flex-col items-center gap-3">
+              <div className="flex items-center gap-2 px-4 py-2 bg-fg/10 border border-fg/30 rounded-lg">
+                <span className="text-xs text-muted uppercase tracking-wider">Повышение цен через:</span>
+                <span className="text-fg font-bold text-base tabular-nums">
+                  {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
+                </span>
+              </div>
+              <a href="#preorder-form" onClick={handleCTAClick} className="w-full bg-fg text-bg font-semibold py-3 px-5 rounded-lg hover:bg-accent transition-all">
+                Предзапись
+              </a>
+            </div>
           </nav>
         </div>
       </div>

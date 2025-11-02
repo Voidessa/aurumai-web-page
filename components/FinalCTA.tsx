@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // Конфигурация API - используем URL бекенда на Vercel
-const API_BASE_URL = (window as any).__API_BASE_URL__ || import.meta.env.VITE_API_BASE_URL || 'https://aurumai-web-page.vercel.app';
+const API_BASE_URL = (window as any).__API_BASE_URL__ || (import.meta as any).env?.VITE_API_BASE_URL || 'https://aurumai-web-page.vercel.app';
 
 const FinalCTA: React.FC = () => {
   const [form, setForm] = useState({
@@ -109,20 +109,20 @@ const FinalCTA: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label htmlFor="name" className="sr-only">Имя</label>
-                <input id="name" name="name" type="text" placeholder="Имя" required value={form.name} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" />
+                <input id="name" name="name" type="text" placeholder="Имя" required value={form.name} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" style={{ color: 'var(--fg)' }} />
               </div>
               <div>
                 <label htmlFor="email" className="sr-only">Email</label>
-                <input id="email" name="email" type="email" placeholder="Email" required value={form.email} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" />
+                <input id="email" name="email" type="email" placeholder="Email" required value={form.email} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" style={{ color: 'var(--fg)' }} />
               </div>
             </div>
              <div>
                 <label htmlFor="telegram" className="sr-only">@Telegram (необязательно)</label>
-                <input id="telegram" name="telegram" type="text" placeholder="@Telegram (необязательно)" value={form.telegram} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" />
+                <input id="telegram" name="telegram" type="text" placeholder="@Telegram (необязательно)" value={form.telegram} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" style={{ color: 'var(--fg)' }} />
               </div>
             <div>
               <label htmlFor="experience" className="sr-only">Ваш опыт</label>
-              <select id="experience" name="experience" required value={form.experience} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent appearance-none">
+              <select id="experience" name="experience" required value={form.experience} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent appearance-none" style={{ color: 'var(--fg)' }}>
                 <option value="" disabled>Ваш опыт в AI...</option>
                 <option value="новичок">Новичок</option>
                 <option value="средний">Средний</option>
@@ -131,7 +131,7 @@ const FinalCTA: React.FC = () => {
             </div>
             <div>
               <label htmlFor="goal" className="sr-only">Ваша цель обучения</label>
-              <textarea id="goal" name="goal" placeholder="Ваша главная цель на курсе?" rows={3} value={form.goal} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent"></textarea>
+              <textarea id="goal" name="goal" placeholder="Ваша главная цель на курсе?" rows={3} value={form.goal} onChange={handleInputChange} className="w-full bg-bg-elev border border-glass-border rounded-lg px-4 py-3 text-fg placeholder-muted focus:outline-none focus:ring-2 focus:ring-accent" style={{ color: 'var(--fg)' }}></textarea>
             </div>
 
             <div className="flex items-start space-x-3">

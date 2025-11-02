@@ -1,7 +1,5 @@
 import React, { useState, useRef } from "react";
 import { buttonVariants } from "./ui/button";
-import { Label } from "./ui/label";
-import { Switch } from "./ui/switch";
 import { useMediaQuery } from "../hooks/use-media-query";
 import { cn } from "../lib/utils";
 import { motion } from "framer-motion";
@@ -30,6 +28,7 @@ interface PricingPlan {
   buttonText: string;
   href: string;
   isPopular: boolean;
+  spotsLeft?: number;
 }
 
 interface PricingProps {
@@ -43,10 +42,8 @@ export function Pricing({
   title = "Простая и прозрачная стоимость",
   description = "Выберите план, который подходит вам\nВсе планы включают доступ к платформе, инструментам генерации лидов и персональной поддержке.",
 }: PricingProps) {
-  const [isMonthly, setIsMonthly] = useState(true);
   const [hasDiscount, setHasDiscount] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
-  const switchRef = useRef<HTMLButtonElement>(null);
   const discountButtonRef = useRef<HTMLButtonElement>(null);
 
   const triggerConfetti = async (ref: React.RefObject<HTMLElement>) => {
@@ -91,13 +88,6 @@ export function Pricing({
     }
   };
 
-  const handleToggle = async (checked: boolean) => {
-    setIsMonthly(!checked);
-    if (checked) {
-      await triggerConfetti(switchRef);
-    }
-  };
-
   const handleDiscountClick = async () => {
     if (!hasDiscount) {
       setHasDiscount(true);
@@ -116,7 +106,7 @@ export function Pricing({
 
   // Функция получения оригинальной цены
   const getOriginalPrice = (plan: PricingPlan) => {
-    return isMonthly ? plan.price : plan.yearlyPrice;
+    return plan.price;
   };
 
 
@@ -157,29 +147,6 @@ export function Pricing({
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center mb-10 gap-4"
         >
-          <div className="flex justify-center items-center gap-3 flex-wrap">
-            <motion.span
-              animate={{ opacity: isMonthly ? 1 : 0.5 }}
-              className={cn("text-sm font-semibold transition-opacity", !isMonthly && "text-muted")}
-            >
-              Месячная оплата
-            </motion.span>
-            <Label className="cursor-pointer">
-              <Switch
-                ref={switchRef as any}
-                checked={!isMonthly}
-                onCheckedChange={handleToggle}
-                className="relative"
-              />
-            </Label>
-            <motion.span
-              animate={{ opacity: !isMonthly ? 1 : 0.5 }}
-              className={cn("text-sm font-semibold transition-opacity", isMonthly && "text-muted")}
-            >
-              Годовая оплата <span className="text-fg font-bold">(Экономия 20%)</span>
-            </motion.span>
-          </div>
-          
           {!hasDiscount && (
             <motion.button
               ref={discountButtonRef}
@@ -210,7 +177,7 @@ export function Pricing({
           )}
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {plans.map((plan, index) => (
             <motion.div
               key={`${plan.name}-${index}`}
@@ -273,7 +240,7 @@ export function Pricing({
                   )}
                   <div className="flex items-center justify-center gap-x-2">
                     <motion.span 
-                      key={`${isMonthly ? plan.price : plan.yearlyPrice}-${hasDiscount}`}
+                      key={`${plan.price}-${hasDiscount}`}
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ duration: 0.3 }}
@@ -300,8 +267,21 @@ export function Pricing({
                 </div>
 
                 <p className="text-xs leading-5 text-muted mt-1">
-                  {isMonthly ? "оплата помесячно" : "оплата за год"}
+                  оплата помесячно
                 </p>
+
+                {plan.spotsLeft && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="mt-3 px-4 py-2 bg-accent/20 border border-accent/40 rounded-lg"
+                  >
+                    <span className="text-accent font-bold text-sm">
+                      ⚠️ Осталось {plan.spotsLeft} мест
+                    </span>
+                  </motion.div>
+                )}
 
                 <ul className="mt-6 gap-3 flex flex-col">
                   {plan.features.map((feature, idx) => (
