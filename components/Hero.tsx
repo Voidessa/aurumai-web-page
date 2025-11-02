@@ -3,7 +3,6 @@ import { SplineScene } from './SplineScene';
 import { Spotlight } from './Spotlight';
 import { SparklesCore } from './ui/sparkles';
 import { Vortex } from './ui/vortex';
-import { LiquidButton } from './ui/liquid-button';
 
 const Hero: React.FC = () => {
 
@@ -23,17 +22,17 @@ const Hero: React.FC = () => {
       {/* Контейнер с Card стилем */}
       <div className="w-full max-w-7xl mx-auto px-4 h-full min-h-[500px] md:min-h-[600px] bg-black/[0.96] rounded-2xl border border-glass-border relative overflow-hidden">
         {/* Vortex Background анимация */}
-        <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl">
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl pointer-events-none">
           <Vortex
             backgroundColor="transparent"
-            particleCount={300}
+            particleCount={200}
             rangeY={800}
             baseSpeed={0.0}
             rangeSpeed={1.5}
             baseRadius={1}
             rangeRadius={2}
-            className="w-full h-full"
-            containerClassName="w-full h-full"
+            className="w-full h-full pointer-events-none"
+            containerClassName="w-full h-full pointer-events-none"
           />
         </div>
         
@@ -79,20 +78,13 @@ const Hero: React.FC = () => {
               Пройдите путь от новичка до профи в генерации изображений и видео с помощью нейросетей. Откройте новый источник дохода и творческой реализации.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <LiquidButton
-                asChild
-                variant="default"
-                size="xl"
-                className="text-center"
+              <a 
+                href="#preorder-form" 
+                onClick={handleCTAClick} 
+                className="bg-fg text-bg font-bold py-3 px-8 rounded-lg hover:bg-accent transition-all text-lg text-center"
               >
-                <a 
-                  href="#preorder-form" 
-                  onClick={handleCTAClick} 
-                  className="text-fg font-bold text-lg"
-                >
-                  Записаться на курс
-                </a>
-              </LiquidButton>
+                Записаться на курс
+              </a>
             </div>
           </div>
 

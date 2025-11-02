@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { LiquidButton } from './ui/liquid-button';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -81,17 +80,10 @@ const Header: React.FC = () => {
                   {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
                 </span>
               </div>
-              {/* Desktop CTA - Liquid Glass кнопка */}
-              <LiquidButton
-                asChild
-                variant="default"
-                size="lg"
-                className="hidden md:flex"
-              >
-                <a href="#preorder-form" onClick={handleCTAClick} className="text-fg font-semibold">
-                  Предзапись
-                </a>
-              </LiquidButton>
+              {/* Desktop CTA */}
+              <a href="#preorder-form" onClick={handleCTAClick} className="hidden md:inline-block bg-fg text-bg font-semibold py-2 px-5 rounded-lg hover:bg-accent transition-all">
+                Предзапись
+              </a>
             </div>
             {/* Mobile Nav Button */}
             <div className="md:hidden">
@@ -129,16 +121,9 @@ const Header: React.FC = () => {
                   {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
                 </span>
               </div>
-              <LiquidButton
-                asChild
-                variant="default"
-                size="xl"
-                className="w-full"
-              >
-                <a href="#preorder-form" onClick={handleCTAClick} className="text-fg font-semibold">
-                  Предзапись
-                </a>
-              </LiquidButton>
+              <a href="#preorder-form" onClick={handleCTAClick} className="w-full bg-fg text-bg font-semibold py-3 px-5 rounded-lg hover:bg-accent transition-all">
+                Предзапись
+              </a>
             </div>
           </nav>
         </div>
