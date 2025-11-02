@@ -3,6 +3,7 @@ import { SplineScene } from './SplineScene';
 import { Spotlight } from './Spotlight';
 import { SparklesCore } from './ui/sparkles';
 import { Vortex } from './ui/vortex';
+import { LiquidButton } from './ui/liquid-button';
 
 const Hero: React.FC = () => {
 
@@ -84,13 +85,20 @@ const Hero: React.FC = () => {
               Пройдите путь от новичка до профи в генерации изображений и видео с помощью нейросетей. Откройте новый источник дохода и творческой реализации.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <a 
-                href="#preorder-form" 
-                onClick={handleCTAClick} 
-                className="bg-fg text-bg font-bold py-3 px-8 rounded-lg hover:bg-accent transition-all text-lg text-center"
+              <LiquidButton
+                asChild
+                variant="default"
+                size="xl"
+                className="text-center"
               >
-                Записаться на курс
-              </a>
+                <a 
+                  href="#preorder-form" 
+                  onClick={handleCTAClick} 
+                  className="text-fg font-bold text-lg"
+                >
+                  Записаться на курс
+                </a>
+              </LiquidButton>
             </div>
           </div>
 
