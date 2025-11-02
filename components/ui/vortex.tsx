@@ -194,14 +194,29 @@ export const Vortex = (props: VortexProps) => {
     ctx?: CanvasRenderingContext2D
   ) => {
     const container = containerRef.current;
-    if (!container) return;
+    if (!container) {
+      // Fallback to window size if container not found
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      center[0] = 0.5 * canvas.width;
+      center[1] = 0.5 * canvas.height;
+      return;
+    }
 
-    const rect = (container as HTMLElement).getBoundingClientRect();
-    canvas.width = rect.width;
-    canvas.height = rect.height;
+    try {
+      const rect = (container as HTMLElement).getBoundingClientRect();
+      canvas.width = rect.width || window.innerWidth;
+      canvas.height = rect.height || window.innerHeight;
 
-    center[0] = 0.5 * canvas.width;
-    center[1] = 0.5 * canvas.height;
+      center[0] = 0.5 * canvas.width;
+      center[1] = 0.5 * canvas.height;
+    } catch (error) {
+      // Fallback on error
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      center[0] = 0.5 * canvas.width;
+      center[1] = 0.5 * canvas.height;
+    }
   };
 
   const renderGlow = (
