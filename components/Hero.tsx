@@ -47,30 +47,32 @@ const Hero: React.FC = () => {
             <p className="mt-6 text-lg md:text-xl text-muted max-w-xl">
               Пройдите путь от новичка до профи в генерации изображений и видео с помощью нейросетей. Откройте новый источник дохода и творческой реализации.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 relative">
-              {/* Большой квадратный liquid glass пузырь как декоративная рамка */}
-              <div className="absolute -left-8 -top-8 w-64 h-64 rounded-3xl pointer-events-none"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  backdropFilter: 'blur(24px) saturate(120%)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.05)'
-                }}
-              />
-              <LiquidButton
-                asChild
-                variant="default"
-                size="xl"
-                className="text-center relative z-10"
-              >
-                <a 
-                  href="#preorder-form" 
-                  onClick={handleCTAClick} 
-                  className="text-fg font-bold text-lg"
+            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <div className="relative inline-block w-fit">
+                {/* Liquid glass оболочка по размеру кнопки */}
+                <div className="absolute inset-0 -m-3 rounded-xl pointer-events-none"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    backdropFilter: 'blur(20px) saturate(120%)',
+                    border: '1px solid rgba(255, 255, 255, 0.15)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.05)'
+                  }}
+                />
+                <LiquidButton
+                  asChild
+                  variant="default"
+                  size="xl"
+                  className="text-center relative z-10"
                 >
-                  Записаться на курс
-                </a>
-              </LiquidButton>
+                  <a 
+                    href="#preorder-form" 
+                    onClick={handleCTAClick} 
+                    className="text-fg font-bold text-lg"
+                  >
+                    Записаться на курс
+                  </a>
+                </LiquidButton>
+              </div>
             </div>
           </div>
 
