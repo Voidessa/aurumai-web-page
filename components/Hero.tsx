@@ -48,29 +48,45 @@ const Hero: React.FC = () => {
           <div className="flex-1 p-8 md:p-12 relative z-10 flex flex-col justify-center">
             {/* AURUM AI с Sparkles эффектом */}
             <div className="relative flex flex-col items-start mb-6">
-              <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-white relative z-20 mb-4">
+              <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-white relative z-20 mb-4 whitespace-nowrap">
                 AURUM AI
               </h1>
-              {/* Sparkles эффект под текстом */}
-              <div className="w-full md:w-[600px] h-32 md:h-40 relative -mt-4">
+              {/* Sparkles эффект под текстом - плотное скопление частиц как на фото */}
+              <div className="w-full md:w-[600px] h-40 md:h-48 relative -mt-4">
                 {/* Gradients */}
-                <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-fg to-transparent h-[2px] w-full blur-sm" />
-                <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-fg to-transparent h-px w-full" />
-                <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-accent to-transparent h-[5px] w-1/3 blur-sm" />
-                <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-accent to-transparent h-px w-1/3" />
+                <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-fg/50 to-transparent h-[2px] w-full blur-sm z-10" />
+                <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-fg/30 to-transparent h-px w-full z-10" />
+                <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-accent/40 to-transparent h-[5px] w-1/3 blur-sm z-10" />
+                <div className="absolute inset-x-0 top-0 bg-gradient-to-r from-transparent via-accent/30 to-transparent h-px w-1/3 z-10" />
 
-                {/* Sparkles Core компонент */}
-                <SparklesCore
-                  background="transparent"
-                  minSize={0.4}
-                  maxSize={1}
-                  particleDensity={1200}
-                  className="w-full h-full"
-                  particleColor="#FFFFFF"
-                />
+                {/* Sparkles Core компонент - плотное скопление частиц */}
+                <div className="absolute inset-0 w-full h-full z-0">
+                  <SparklesCore
+                    background="transparent"
+                    minSize={0.2}
+                    maxSize={0.8}
+                    particleDensity={2000}
+                    speed={2}
+                    className="w-full h-full"
+                    particleColor="#FFFFFF"
+                  />
+                </div>
 
-                {/* Radial Gradient чтобы убрать резкие края */}
-                <div className="absolute inset-0 w-full h-full bg-black/[0.96] [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+                {/* Дополнительный слой для большей плотности */}
+                <div className="absolute inset-0 w-full h-full z-0 opacity-80">
+                  <SparklesCore
+                    background="transparent"
+                    minSize={0.15}
+                    maxSize={0.6}
+                    particleDensity={1500}
+                    speed={1.5}
+                    className="w-full h-full"
+                    particleColor="#FFFFFF"
+                  />
+                </div>
+
+                {/* Radial Gradient чтобы убрать резкие края и создать плавный переход */}
+                <div className="absolute inset-0 w-full h-full bg-black/[0.96] [mask-image:radial-gradient(400px_250px_at_center,transparent_30%,white)] z-10 pointer-events-none"></div>
               </div>
             </div>
             
