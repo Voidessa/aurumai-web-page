@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useRef } from "react";
 import { buttonVariants } from "./ui/button";
 import { Label } from "./ui/label";
