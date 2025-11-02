@@ -1,4 +1,5 @@
 import React from 'react';
+import { SplineScene } from './SplineScene';
 
 const Hero: React.FC = () => {
 
@@ -10,9 +11,22 @@ const Hero: React.FC = () => {
     }
   };
 
+  // Замените этот URL на URL вашей Spline сцены
+  // Например: "https://prod.spline.design/xxx-scene.splinecode"
+  const splineSceneUrl = "https://your-spline-scene-url.splinecode"; // TODO: Замените на ваш URL
+
   return (
-    <section id="hero" className="text-center py-20 md:py-32">
-      <div className="max-w-4xl mx-auto">
+    <section id="hero" className="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-20 md:py-32">
+      {/* Spline 3D Scene - фон */}
+      <div className="absolute inset-0 w-full h-full opacity-50 md:opacity-60 -z-10">
+        <SplineScene 
+          scene={splineSceneUrl}
+          className="w-full h-full"
+        />
+      </div>
+
+      {/* Контент поверх Spline */}
+      <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
           <span className="bg-clip-text text-transparent bg-grad-1">
             Создавайте AI-контент,
