@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { LiquidButton } from './ui/liquid-button';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -71,16 +72,26 @@ const Header: React.FC = () => {
             <nav className="hidden md:flex items-center space-x-8">
               {navLinks}
             </nav>
-            <div className="hidden md:flex items-center gap-4">
-              <div className="flex items-center gap-2 px-4 py-2 bg-fg/10 border border-fg/30 rounded-lg">
-                <span className="text-xs text-muted uppercase tracking-wider">Повышение цен через:</span>
-                <span className="text-fg font-bold text-lg tabular-nums">
+            <div className="flex items-center gap-3 md:gap-4">
+              {/* Timer - видимый на всех устройствах */}
+              <div className="flex items-center gap-1.5 md:gap-2 px-2 md:px-4 py-1.5 md:py-2 bg-fg/10 border border-fg/30 rounded-lg">
+                <span className="text-[10px] md:text-xs text-muted uppercase tracking-wider hidden sm:inline">Повышение цен через:</span>
+                <span className="text-[10px] md:text-xs text-muted uppercase tracking-wider sm:hidden">Через:</span>
+                <span className="text-fg font-bold text-sm md:text-lg tabular-nums">
                   {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
                 </span>
               </div>
-              <a href="#preorder-form" onClick={handleCTAClick} className="bg-fg text-bg font-semibold py-2 px-5 rounded-lg hover:bg-accent transition-all">
-                Предзапись
-              </a>
+              {/* Desktop CTA - Liquid Glass кнопка */}
+              <LiquidButton
+                asChild
+                variant="default"
+                size="lg"
+                className="hidden md:flex"
+              >
+                <a href="#preorder-form" onClick={handleCTAClick} className="text-fg font-semibold">
+                  Предзапись
+                </a>
+              </LiquidButton>
             </div>
             {/* Mobile Nav Button */}
             <div className="md:hidden">
@@ -111,15 +122,23 @@ const Header: React.FC = () => {
           <nav className="pt-28 p-8 flex flex-col items-center text-center space-y-6">
             {navLinks}
             <div className="w-full flex flex-col items-center gap-3">
-              <div className="flex items-center gap-2 px-4 py-2 bg-fg/10 border border-fg/30 rounded-lg">
+              {/* Timer в мобильном меню */}
+              <div className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-fg/10 border border-fg/30 rounded-lg">
                 <span className="text-xs text-muted uppercase tracking-wider">Повышение цен через:</span>
                 <span className="text-fg font-bold text-base tabular-nums">
                   {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
                 </span>
               </div>
-              <a href="#preorder-form" onClick={handleCTAClick} className="w-full bg-fg text-bg font-semibold py-3 px-5 rounded-lg hover:bg-accent transition-all">
-                Предзапись
-              </a>
+              <LiquidButton
+                asChild
+                variant="default"
+                size="xl"
+                className="w-full"
+              >
+                <a href="#preorder-form" onClick={handleCTAClick} className="text-fg font-semibold">
+                  Предзапись
+                </a>
+              </LiquidButton>
             </div>
           </nav>
         </div>
