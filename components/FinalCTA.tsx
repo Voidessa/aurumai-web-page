@@ -13,7 +13,7 @@ const FinalCTA: React.FC = () => {
     consent: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // Removed isSent state - using redirect instead
+  const [isSent, setIsSent] = useState(false);
   const [error, setError] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -67,8 +67,8 @@ const FinalCTA: React.FC = () => {
         throw new Error(json.error || 'send_failed');
       }
       
-      // Redirect to thanks page
-      window.location.href = '/thanks.html';
+      // Show success message on the same page
+      setIsSent(true);
     } catch (err: any) {
       console.error("Submission error:", err);
       let errorMessage = 'Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.';
@@ -98,14 +98,30 @@ const FinalCTA: React.FC = () => {
     <section id="preorder-form" className="py-20 md:py-28 scroll-mt-20">
       <div className="container mx-auto px-4">
         <div className="relative glass p-8 md:p-12">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold">Забронируйте свое место</h2>
-            <p className="text-muted max-w-2xl mx-auto mt-2">
-              Заполните форму, чтобы попасть в список предзаписи и получить лучшие условия.
-            </p>
-          </div>
-          
-          <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-5">
+          {isSent ? (
+            <div className="text-center py-8">
+              <div className="mb-6">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/20 border-2 border-green-500 mb-4">
+                  <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">Ваша заявка одобрена</h3>
+              <p className="text-muted max-w-md mx-auto">
+                Спасибо за ваш интерес! Мы свяжемся с вами в ближайшее время.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold">Забронируйте свое место</h2>
+                <p className="text-muted max-w-2xl mx-auto mt-2">
+                  Заполните форму, чтобы попасть в список предзаписи и получить лучшие условия.
+                </p>
+              </div>
+              
+              <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
                 <label htmlFor="name" className="sr-only">Имя</label>
@@ -160,6 +176,8 @@ const FinalCTA: React.FC = () => {
 
             {error && <p className="text-red-400 text-center text-sm mt-2">{error}</p>}
           </form>
+            </>
+          )}
         </div>
       </div>
     </section>
