@@ -13,7 +13,7 @@ const FinalCTA: React.FC = () => {
     consent: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSent, setIsSent] = useState(false);
+  // Removed isSent state - using redirect instead
   const [error, setError] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -39,6 +39,7 @@ const FinalCTA: React.FC = () => {
     try {
       // Получаем UTM данные из window.__LEAD_CTX__ (установлено в index.html)
       const ctx = (window as any).__LEAD_CTX__ || {};
+      const gaClientId = (window as any).__GA_CLIENT_ID__ || null;
       
       const payload = {
         name: form.name,
@@ -48,7 +49,8 @@ const FinalCTA: React.FC = () => {
         goal: form.goal || undefined,
         source: ctx.source || 'direct',
         utm: ctx.utm || {},
-        turnstileToken: (window as any).turnstileToken // если используешь Turnstile
+        turnstileToken: (window as any).turnstileToken, // Turnstile token
+        clientId: gaClientId // GA4 client ID
       };
 
       const response = await fetch(`${API_BASE_URL}/api/lead`, {
@@ -65,34 +67,32 @@ const FinalCTA: React.FC = () => {
         throw new Error(json.error || 'send_failed');
       }
       
-      setIsSent(true);
+      // Redirect to thanks page
+      window.location.href = '/thanks.html';
     } catch (err: any) {
       console.error("Submission error:", err);
-      const errorMessage = err.message === 'rate_limited' 
-        ? 'Слишком много запросов. Пожалуйста, подождите немного.'
-        : err.message === 'turnstile_failed'
-        ? 'Ошибка проверки безопасности. Пожалуйста, обновите страницу и попробуйте снова.'
-        : 'Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.';
+      let errorMessage = 'Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.';
+      
+      if (err.message === 'rate_limited') {
+        errorMessage = '⏱ Вы слишком часто отправляете заявку. Пожалуйста, подождите немного.';
+      } else if (err.message === 'turnstile_failed') {
+        errorMessage = '🤖 Подтвердите, что вы не робот. Обновите страницу и попробуйте снова.';
+      } else if (err.message === 'bad_input') {
+        errorMessage = '❌ Проверьте правильность заполнения всех полей.';
+      } else if (err.message === 'server_error' || err.message.includes('500')) {
+        errorMessage = '⚠️ Ошибка сервера. Попробуйте позже или свяжитесь с нами напрямую.';
+      }
+      
       setError(errorMessage);
+      
+      // Reset Turnstile widget if it exists
+      if ((window as any).turnstile) {
+        (window as any).turnstile.reset();
+      }
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  if (isSent) {
-    return (
-      <section id="preorder-form" className="py-20 md:py-28 scroll-mt-20">
-        <div className="container mx-auto px-4">
-          <div className="relative glass p-8 md:p-16 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">✅ Заявка отправлена!</h2>
-            <p className="text-muted max-w-2xl mx-auto">
-              Спасибо за ваш интерес! Мы свяжемся с вами в ближайшее время и вышлем приглашение в Telegram.
-            </p>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section id="preorder-form" className="py-20 md:py-28 scroll-mt-20">
@@ -140,6 +140,19 @@ const FinalCTA: React.FC = () => {
                 Я согласен с <a href="/privacy" target="_blank" className="underline hover:text-fg">политикой конфиденциальности</a> и <a href="/terms" target="_blank" className="underline hover:text-fg">условиями использования</a>.
               </label>
             </div>
+
+            {/* Cloudflare Turnstile Widget - ВРЕМЕННО ОТКЛЮЧЕН */}
+            {/* После получения домена раскомментировать и обновить data-sitekey */}
+            {/*
+            <div className="flex justify-center">
+              <div 
+                className="cf-turnstile" 
+                data-sitekey="1x00000000000000000000AA" 
+                data-callback="onTurnstileToken"
+                data-theme="dark"
+              ></div>
+            </div>
+            */}
 
             <button type="submit" disabled={isSubmitting} className="w-full bg-fg text-bg font-bold py-3 px-8 rounded-lg hover:bg-accent transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed">
               {isSubmitting ? 'Отправка...' : 'Предзаписаться'}
