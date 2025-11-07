@@ -73,7 +73,32 @@ const Header: React.FC = () => {
             <nav className="hidden md:flex items-center space-x-8">
               {navLinks}
             </nav>
-            <div className="flex items-center gap-3 md:gap-4">
+            <div className="flex items-center gap-2 md:gap-4">
+              {/* Mobile Social Icons - слева от таймера */}
+              <div className="flex md:hidden items-center gap-1.5">
+                {/* Telegram Mobile */}
+                <a
+                  href="https://t.me/+4JZL_d-1otBjZTZi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-cyan-500/10 border border-cyan-500/30"
+                  aria-label="Telegram"
+                >
+                  <Send className="w-4 h-4 text-cyan-400" />
+                </a>
+                
+                {/* Instagram Mobile */}
+                <a
+                  href="https://www.instagram.com/aaurum.ai/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-pink-500/10 border border-pink-500/30"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-4 h-4 text-pink-400" />
+                </a>
+              </div>
+              
               {/* Timer - влитый счетчик без оболочки */}
               <div className="flex flex-col md:flex-row items-center md:items-center gap-0 md:gap-2">
                 <span className="text-[8px] md:text-[10px] text-muted/70 uppercase tracking-wider whitespace-nowrap">Конец скидки 30%</span>

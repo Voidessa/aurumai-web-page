@@ -6,7 +6,6 @@ import Program from './components/Program';
 import Showcase from './components/Showcase';
 import HowItWorks from './components/HowItWorks';
 import ShowcaseSecond from './components/ShowcaseSecond';
-import Testimonials from './components/Testimonials';
 import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import FinalCTA from './components/FinalCTA';
@@ -63,7 +62,6 @@ function App() {
           <Showcase />
           <HowItWorks />
           <ShowcaseSecond />
-          <Testimonials />
           <Pricing />
           <FAQ />
         </main>
