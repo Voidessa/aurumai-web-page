@@ -8,8 +8,8 @@ const FinalCTA: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="relative glass p-8 md:p-12">
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Готовы начать?</h2>
-            <p className="text-muted text-lg md:text-xl mb-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">Готовы начать?</h2>
+            <p className="text-muted text-base sm:text-lg md:text-xl mb-8 md:mb-10 px-4">
               Заполните форму предзаписи и забронируйте свое место в первой волне AURUM AI.
             </p>
             
@@ -17,10 +17,10 @@ const FinalCTA: React.FC = () => {
               onClick={() => window.open('https://docs.google.com/forms/d/1Xqzt6txzZIku_3FtMCYYydx4xxX-zlAmw4Y9Hh8f6LA/viewform', '_blank')}
               variant="default"
               size="lg"
-              className="text-lg md:text-xl px-8 py-4 mx-auto inline-flex items-center gap-2"
+              className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4 mx-auto inline-flex items-center gap-2 whitespace-nowrap"
             >
-              <Rocket className="w-6 h-6" />
-              Записаться на курс
+              <Rocket className="w-5 h-5 md:w-6 md:h-6" />
+              <span className="whitespace-nowrap">Записаться на курс</span>
             </LiquidButton>
           </div>
         </div>

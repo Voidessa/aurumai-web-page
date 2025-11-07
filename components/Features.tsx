@@ -53,22 +53,7 @@ const Features: React.FC = () => {
 
   return (
     <section className="py-20 relative overflow-hidden">
-      {/* Оптимизированный видео фон */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-15"
-        >
-          <source src="/videos/features-bg.mp4" type="video/mp4" />
-        </video>
-        {/* Градиентный оверлей для лучшей читаемости */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/85"></div>
-      </div>
-
-      {/* Контент поверх видео */}
+      {/* Контент */}
       <div className="relative z-10 px-4 sm:px-6">
         <div className="text-center mb-8 md:mb-12">
           <div className="flex items-center justify-center gap-3 mb-4">

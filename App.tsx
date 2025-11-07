@@ -38,21 +38,38 @@ function App() {
   }, []); // The empty dependency array ensures this runs only once on component mount.
 
   return (
-    <div className="bg-bg text-fg font-sans">
-      <Header />
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-28">
-        <Hero />
-        <Features />
-        <Program />
-        <Showcase />
-        <HowItWorks />
-        <ShowcaseSecond />
-        <Testimonials />
-        <Pricing />
-        <FAQ />
-      </main>
-      <FinalCTA />
-      <Footer />
+    <div className="bg-bg text-fg font-sans relative">
+      {/* Глобальный видео фон для всего сайта */}
+      <div className="fixed inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-10"
+        >
+          <source src="/videos/features-bg.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/85 to-black/90"></div>
+      </div>
+
+      {/* Весь контент поверх видео */}
+      <div className="relative z-10">
+        <Header />
+        <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-28">
+          <Hero />
+          <Features />
+          <Program />
+          <Showcase />
+          <HowItWorks />
+          <ShowcaseSecond />
+          <Testimonials />
+          <Pricing />
+          <FAQ />
+        </main>
+        <FinalCTA />
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -19,22 +19,7 @@ const Hero: React.FC = () => {
   return (
     <section id="hero" className="relative min-h-[80vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden py-20 md:py-32">
       {/* Контейнер с Card стилем */}
-      <div className="w-full max-w-7xl mx-auto px-4 h-full min-h-[500px] md:min-h-[600px] bg-black/[0.96] rounded-2xl border border-glass-border relative overflow-hidden">
-        
-        {/* Видео фон */}
-        <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-20"
-          >
-            <source src="/videos/features-bg.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80"></div>
-        </div>
-
+      <div className="w-full max-w-7xl mx-auto px-4 h-full min-h-[500px] md:min-h-[600px] bg-transparent rounded-2xl border border-glass-border relative overflow-hidden">
         {/* Vortex Background анимация */}
         <div className="absolute inset-0 z-[1] overflow-hidden rounded-2xl pointer-events-none">
           <Vortex
@@ -91,8 +76,8 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Правая колонка - Spline 3D (больше на мобильной версии) */}
-          <div className="flex-1 relative min-h-[400px] md:min-h-[500px] scale-110 md:scale-100 origin-center z-50">
+          {/* Правая колонка - Spline 3D (максимально большой на мобильных) */}
+          <div className="flex-1 relative min-h-[400px] md:min-h-[500px] scale-[1.8] sm:scale-[1.4] md:scale-100 origin-center z-50">
             {splineSceneUrl ? (
               <SplineScene 
                 scene={splineSceneUrl}

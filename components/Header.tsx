@@ -74,11 +74,10 @@ const Header: React.FC = () => {
               {navLinks}
             </nav>
             <div className="flex items-center gap-3 md:gap-4">
-              {/* Timer - видимый на всех устройствах */}
-              <div className="flex items-center gap-1.5 md:gap-2 px-2 md:px-4 py-1.5 md:py-2 bg-fg/10 border border-fg/30 rounded-lg">
-                <span className="text-[10px] md:text-xs text-muted uppercase tracking-wider hidden sm:inline">Повышение цен через:</span>
-                <span className="text-[10px] md:text-xs text-muted uppercase tracking-wider sm:hidden">Через:</span>
-                <span className="text-fg font-bold text-sm md:text-lg tabular-nums">
+              {/* Timer - влитый счетчик без оболочки */}
+              <div className="flex items-center gap-1.5 md:gap-2">
+                <span className="text-[10px] md:text-xs text-muted/70 uppercase tracking-wider hidden sm:inline">через</span>
+                <span className="text-fg font-bold text-base md:text-xl tabular-nums">
                   {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
                 </span>
               </div>
