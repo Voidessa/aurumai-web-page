@@ -48,7 +48,7 @@ function App() {
           playsInline
           className="w-full h-full object-cover opacity-50"
         >
-          <source src="/videos/features-bg.mp4" type="video/mp4" />
+          <source src="/videos/background.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
