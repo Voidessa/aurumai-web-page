@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
         </div>
         
         {/* Контент с двумя колонками */}
-        <div className="flex flex-col md:flex-row h-full min-h-[600px] md:min-h-[600px] relative z-10">
+        <div className="flex flex-col md:flex-row h-full min-h-[700px] md:min-h-[600px] relative z-10">
           {/* Левая колонка - текст с Sparkles эффектом */}
           <div className="flex-1 p-6 md:p-12 relative z-10 flex flex-col justify-center">
             {/* AURUM AI */}
@@ -77,7 +77,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Правая колонка - Spline 3D */}
-          <div className="flex-1 relative min-h-[300px] md:min-h-[500px] scale-100 sm:scale-110 md:scale-100 origin-center z-50">
+          <div className="flex-1 relative min-h-[500px] md:min-h-[500px] scale-[1.6] sm:scale-[1.4] md:scale-100 z-50" style={{ transformOrigin: 'center bottom' }}>
             {splineSceneUrl ? (
               <SplineScene 
                 scene={splineSceneUrl}
