@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { SplineScene } from './SplineScene';
 import { Vortex } from './ui/vortex';
 import { LiquidButton } from './ui/liquid-button';
 
 const Hero: React.FC = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const robotRef = useRef<HTMLDivElement>(null);
+
+  // Отслеживание мыши для поворота робота
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (robotRef.current) {
+        const rect = robotRef.current.getBoundingClientRect();
+        // Сохраняем позицию относительно робота
+        setMousePosition({
+          x: e.clientX - rect.left - rect.width / 2,
+          y: e.clientY - rect.top - rect.height / 2
+        });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   const handleCTAClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -77,7 +96,14 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Правая колонка - Spline 3D (больше на мобильной версии) */}
-          <div className="flex-1 relative min-h-[400px] md:min-h-[500px] scale-110 md:scale-100 origin-center z-50">
+          <div 
+            ref={robotRef}
+            className="flex-1 relative min-h-[400px] md:min-h-[500px] scale-110 md:scale-100 origin-center z-50"
+            style={{
+              transform: `perspective(1000px) rotateY(${mousePosition.x / 20}deg) rotateX(${-mousePosition.y / 20}deg)`,
+              transition: 'transform 0.1s ease-out'
+            }}
+          >
             {splineSceneUrl ? (
               <SplineScene 
                 scene={splineSceneUrl}
