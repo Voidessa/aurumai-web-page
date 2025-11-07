@@ -51,11 +51,28 @@ const Features: React.FC = () => {
   ];
 
   return (
-    <section className="py-20">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold">🔥 Почему стоит попасть в первую волну AURUM AI</h2>
+    <section className="py-20 relative overflow-hidden">
+      {/* Видео фон */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-10"
+        >
+          <source src="/videos/features-bg.mov" type="video/quicktime" />
+        </video>
+        {/* Градиентный оверлей для лучшей читаемости */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80"></div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+
+      {/* Контент поверх видео */}
+      <div className="relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold">🔥 Почему стоит попасть в первую волну AURUM AI</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
         {features.map((feature, index) => (
           <FeatureCard key={index} {...feature} />
         ))}
@@ -72,6 +89,7 @@ const Features: React.FC = () => {
             </span>
           </p>
         </div>
+      </div>
       </div>
     </section>
   );

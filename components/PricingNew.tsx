@@ -111,8 +111,23 @@ export function Pricing({
 
 
   return (
-    <section id="pricing" className="py-20 md:py-28">
-      <div className="container mx-auto px-4">
+    <section id="pricing" className="py-20 md:py-28 relative overflow-hidden">
+      {/* Видео фон */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-10"
+        >
+          <source src="/videos/pricing-bg.mov" type="video/quicktime" />
+        </video>
+        {/* Градиентный оверлей */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/90"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
