@@ -4,14 +4,14 @@ const Showcase: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const showcaseImages = [
-    'https://images.pexels.com/photos/799443/pexels-photo-799443.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/16245254/pexels-photo-16245254/free-photo-of-chatgpt-a-chatbot-for-your-website.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/1910236/pexels-photo-1910236.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/2832382/pexels-photo-2832382.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://images.pexels.com/photos/2333293/pexels-photo-2333293.jpeg?auto=compress&cs=tinysrgb&w=800',
-    'https://picsum.photos/seed/ai-1/800/600',
-    'https://picsum.photos/seed/ai-2/800/600',
-    'https://picsum.photos/seed/ai-3/800/600',
+    '/images/gallery/photo1.jpg',
+    '/images/gallery/photo2.jpg',
+    '/images/gallery/photo3.jpg',
+    '/images/gallery/photo4.jpg',
+    '/images/gallery/photo5.jpg',
+    '/images/gallery/photo6.jpg',
+    '/images/gallery/photo7.jpg',
+    '/images/gallery/photo8.jpg',
   ];
 
   // Дублируем для бесконечной прокрутки
