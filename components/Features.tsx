@@ -1,16 +1,15 @@
 import React from 'react';
 
 interface FeatureCardProps {
-  // FIX: Changed JSX.Element to React.ReactElement to resolve "Cannot find namespace 'JSX'" error.
-  icon: React.ReactElement;
+  emoji: string;
   title: string;
   description: string;
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => (
+const FeatureCard: React.FC<FeatureCardProps> = ({ emoji, title, description }) => (
   <div className="bg-black/20 backdrop-blur-lg border border-white/10 rounded-xl p-6 text-center transform hover:-translate-y-2 transition-transform duration-300">
-    <div className="inline-block p-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg mb-4">
-      {icon}
+    <div className="inline-block text-5xl mb-4">
+      {emoji}
     </div>
     <h3 className="text-xl font-bold mb-2">{title}</h3>
     <p className="text-gray-400">{description}</p>
@@ -20,32 +19,59 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) =
 const Features: React.FC = () => {
   const features = [
     {
-      icon: <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>,
-      title: 'Практические проекты',
-      description: 'Применяйте навыки на реальных проектах, которые создадут сильное портфолио.'
+      emoji: '👀',
+      title: 'Первая волна = личное внимание и обратная связь',
+      description: 'Пока поток небольшой, кураторы реально видят каждого. Ты получаешь обратную связь, как на персональном менторстве — без "автоматических проверок".'
     },
     {
-      icon: <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>,
-      title: 'Эксперты-преподаватели',
-      description: 'Учитесь у лидеров индустрии, которые формируют будущее AI.'
+      emoji: '🧠',
+      title: 'Обучение от практиков, а не теоретиков',
+      description: 'Курс создали ребята, которые уже зарабатывают на генеративных AI-проектах. Ты учишься у тех, кто сам делает контент для брендов, блогеров и агентств.'
     },
     {
-      icon: <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>,
-      title: 'Доступ к сообществу',
-      description: 'Присоединяйтесь к активному сообществу учеников, создателей и менторов.'
+      emoji: '⚡',
+      title: 'Только то, что работает сейчас',
+      description: 'Никакой воды. Только актуальные инструменты — Midjourney, Veo 3.1 Pro, ChatGPT Atlas — и только те, что приносят результат. Всё с инструкциями и реальными примерами.'
+    },
+    {
+      emoji: '🎨',
+      title: 'Соберёшь портфолио уже на курсе',
+      description: 'Каждый модуль — это практический проект. К концу программы у тебя будет 3–5 сильных работ, которые можно показать клиентам или использовать в профиле.'
+    },
+    {
+      emoji: '🔥',
+      title: 'Комьюнити первой волны',
+      description: 'Мы строим ядро сообщества AURUM AI — самых первых студентов. После курса именно вы получите приоритетный доступ ко всем будущим обновлениям, материалам и партнёрствам.'
+    },
+    {
+      emoji: '🧩',
+      title: 'Возможность повлиять на курс',
+      description: 'Это пилотный поток, и твои идеи реально будут влиять на программу. Мы вместе создаём продукт будущего — и твоё имя войдёт в историю AURUM AI.'
     }
   ];
 
   return (
     <section className="py-20">
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold">Почему стоит учиться с нами?</h2>
-        <p className="text-lg text-gray-400 mt-2">Всё необходимое для того, чтобы стать экспертом в AI-контенте.</p>
+        <h2 className="text-3xl md:text-4xl font-bold">🔥 Почему стоит попасть в первую волну AURUM AI</h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
         {features.map((feature, index) => (
           <FeatureCard key={index} {...feature} />
         ))}
+      </div>
+      
+      {/* Финальный абзац */}
+      <div className="max-w-4xl mx-auto mt-16 text-center">
+        <div className="bg-gradient-to-r from-cyan-500/10 to-blue-600/10 backdrop-blur-lg border border-white/10 rounded-xl p-8">
+          <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+            Этот запуск — не просто курс, а старт чего-то большего.
+            Здесь рождаются первые AI-креаторы, которые будут формировать рынок визуального контента в 2025-2026 году.
+            <span className="block mt-4 text-white font-semibold">
+              Если хочешь быть среди них — место в первой волне ждёт тебя.
+            </span>
+          </p>
+        </div>
       </div>
     </section>
   );
