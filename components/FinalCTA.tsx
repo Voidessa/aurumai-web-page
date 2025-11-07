@@ -1,6 +1,5 @@
 import React from 'react';
 import { LiquidButton } from './ui/liquid-button';
-import { Rocket } from 'lucide-react';
 
 const FinalCTA: React.FC = () => {
   return (
@@ -17,10 +16,9 @@ const FinalCTA: React.FC = () => {
               onClick={() => window.open('https://docs.google.com/forms/d/1Xqzt6txzZIku_3FtMCYYydx4xxX-zlAmw4Y9Hh8f6LA/viewform', '_blank')}
               variant="default"
               size="lg"
-              className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4 mx-auto inline-flex items-center gap-2 whitespace-nowrap"
+              className="text-base md:text-lg px-6 md:px-8 py-3 md:py-4 mx-auto whitespace-nowrap"
             >
-              <Rocket className="w-5 h-5 md:w-6 md:h-6" />
-              <span className="whitespace-nowrap">Записаться на курс</span>
+              Записаться на курс
             </LiquidButton>
           </div>
         </div>
