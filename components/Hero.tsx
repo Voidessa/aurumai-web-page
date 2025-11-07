@@ -62,12 +62,12 @@ const Hero: React.FC = () => {
                   asChild
                   variant="default"
                   size="xl"
-                  className="text-center relative z-10"
+                  className="text-center relative z-10 whitespace-nowrap"
                 >
                   <a 
                     href="#preorder-form" 
                     onClick={handleCTAClick} 
-                    className="text-fg font-bold text-lg"
+                    className="text-fg font-bold text-base md:text-lg whitespace-nowrap"
                   >
                     Записаться на курс
                   </a>
