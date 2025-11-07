@@ -5,6 +5,7 @@ import Features from './components/Features';
 import Program from './components/Program';
 import Showcase from './components/Showcase';
 import HowItWorks from './components/HowItWorks';
+import ShowcaseSecond from './components/ShowcaseSecond';
 import Testimonials from './components/Testimonials';
 import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
@@ -45,6 +46,7 @@ function App() {
         <Program />
         <Showcase />
         <HowItWorks />
+        <ShowcaseSecond />
         <Testimonials />
         <Pricing />
         <FAQ />
