@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
             </h1>
             
             <p className="mt-6 text-lg md:text-xl text-muted max-w-xl">
-              Пройдите путь от новичка до профи в генерации изображений и видео с помощью нейросетей. Откройте новый источник дохода и творческой реализации.
+              Научись создавать фотореалистичные AI-изображения и продавай их клиентам из Дубая, Европы и СНГ онлайн
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <div className="relative inline-block w-fit">
