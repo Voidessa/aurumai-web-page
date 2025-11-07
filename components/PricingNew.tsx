@@ -150,20 +150,39 @@ export function Pricing({
           {!hasDiscount && (
             <motion.div
               ref={discountButtonRef}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.8, y: -20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.3 }}
+              animate={{
+                y: [0, -10, 0],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut"
+              }}
+              className="relative"
             >
+              {/* Светящийся фон */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-lg blur-lg opacity-75 group-hover:opacity-100 animate-pulse"></div>
+              
               <LiquidButton
                 onClick={handleDiscountClick}
                 variant="default"
                 size="lg"
-                className="text-sm md:text-base"
+                className="relative text-sm md:text-base font-bold shadow-2xl shadow-cyan-500/50 border-2 border-cyan-400"
               >
-                🎉 Получить скидку -50%
+                <span className="flex items-center gap-2">
+                  <span className="text-2xl animate-bounce">🎉</span>
+                  <span className="bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
+                    Получить скидку -50%
+                  </span>
+                  <span className="text-2xl animate-bounce">🎉</span>
+                </span>
               </LiquidButton>
             </motion.div>
           )}
@@ -186,29 +205,31 @@ export function Pricing({
           {plans.map((plan, index) => (
             <motion.div
               key={`${plan.name}-${index}`}
-              initial={{ y: 50, opacity: 0, scale: 0.9 }}
+              initial={{ y: 60, opacity: 0, scale: 0.85 }}
               whileInView={
                 isDesktop
                   ? {
                       y: plan.isPopular ? -20 : 0,
                       opacity: 1,
-                      x: index === 2 ? -30 : index === 0 ? 30 : 0,
-                      scale: index === 0 || index === 2 ? 0.94 : 1.0,
+                      scale: plan.isPopular ? 1.05 : 1.0,
                     }
                   : { y: 0, opacity: 1, scale: 1 }
               }
               whileHover={{
-                scale: plan.isPopular ? 1.02 : 1.05,
-                y: plan.isPopular ? -25 : -5,
-                transition: { duration: 0.3 }
+                scale: plan.isPopular ? 1.08 : 1.03,
+                y: -10,
+                transition: { 
+                  duration: 0.4,
+                  ease: "easeOut"
+                }
               }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{
-                duration: 0.8,
+                duration: 0.7,
                 type: "spring",
-                stiffness: 100,
-                damping: 20,
-                delay: index * 0.1,
+                stiffness: 80,
+                damping: 15,
+                delay: index * 0.15,
               }}
               className={cn(
                 `rounded-2xl border-[1px] p-5 bg-black/[0.96] text-center lg:flex lg:flex-col lg:justify-center relative glass cursor-pointer transition-all`,

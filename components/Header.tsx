@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { LiquidButton } from './ui/liquid-button';
-import RobotAvatar from './RobotAvatar';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showRobot, setShowRobot] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [timeLeft, setTimeLeft] = useState({
     hours: 3,
     minutes: 0,
@@ -30,26 +27,6 @@ const Header: React.FC = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
-
-  // Отслеживание скролла для показа робота
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowRobot(window.scrollY > 300);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Отслеживание позиции мыши
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   useEffect(() => {
@@ -88,11 +65,7 @@ const Header: React.FC = () => {
       <header className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50">
         <div className="relative glass px-4 sm:px-6 py-3">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              {/* Робот появляется при скролле */}
-              <div className={`transition-all duration-500 ${showRobot ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}>
-                {showRobot && <RobotAvatar mousePosition={mousePosition} />}
-              </div>
+            <div className="flex items-center space-x-2">
               <span className="font-bold text-xl bg-clip-text text-transparent bg-grad-2">AI Vision Pro</span>
             </div>
             {/* Desktop Nav */}
