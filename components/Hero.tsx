@@ -40,11 +40,11 @@ const Hero: React.FC = () => {
           {/* Левая колонка - текст с Sparkles эффектом */}
           <div className="flex-1 p-8 md:p-12 relative z-10 flex flex-col justify-center">
             {/* AURUM AI */}
-            <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-white mb-6 whitespace-nowrap">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white mb-4 md:mb-6 whitespace-nowrap">
               AURUM AI
             </h1>
             
-            <p className="mt-6 text-lg md:text-xl text-muted max-w-xl">
+            <p className="mt-4 md:mt-6 text-base sm:text-lg md:text-xl text-muted max-w-xl leading-relaxed">
               Научись создавать фотореалистичные AI-изображения и продавай их клиентам из Дубая, Европы и СНГ онлайн
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">

@@ -247,8 +247,8 @@ export function Pricing({
                 delay: index * 0.15,
               }}
               className={cn(
-                `rounded-2xl border-[1px] p-5 bg-black/[0.96] text-center lg:flex lg:flex-col lg:justify-center relative glass cursor-pointer transition-all`,
-                plan.isPopular ? "border-fg border-2 shadow-lg shadow-fg/20 scale-105" : "border-glass-border",
+                `rounded-2xl border-[1px] p-4 bg-black/[0.96] text-center lg:flex lg:flex-col lg:justify-center relative glass cursor-pointer transition-all scale-90`,
+                plan.isPopular ? "border-fg border-2 shadow-lg shadow-fg/20 scale-95" : "border-glass-border",
                 "flex flex-col",
                 !plan.isPopular && "mt-5",
                 index === 0 || index === 2

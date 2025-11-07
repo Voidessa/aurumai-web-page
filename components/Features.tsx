@@ -68,11 +68,11 @@ const Features: React.FC = () => {
       </div>
 
       {/* Контент поверх видео */}
-      <div className="relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold">🔥 Почему стоит попасть в первую волну AURUM AI</h2>
+      <div className="relative z-10 px-4 sm:px-6">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">🔥 Почему стоит попасть в первую волну AURUM AI</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 md:mb-12">
         {features.map((feature, index) => (
           <FeatureCard key={index} {...feature} />
         ))}

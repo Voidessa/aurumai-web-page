@@ -19,20 +19,20 @@ const Showcase: React.FC = () => {
   const row2Images = [...showcaseImages.reverse(), ...showcaseImages];
 
   return (
-    <section className="py-20 md:py-28 overflow-hidden">
-      <div className="container mx-auto px-4 mb-12">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-28 overflow-hidden">
+      <div className="container mx-auto px-4 mb-8 sm:mb-10 md:mb-12">
         <div className="text-center">
-          <h2 className="text-4xl md:text-5xl font-bold">Примеры того, что вы сможете создавать</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 leading-tight px-2">Примеры того, что вы сможете создавать</h2>
         </div>
       </div>
 
       {/* Первый ряд - прокрутка вправо */}
-      <div className="relative mb-8">
-        <div className="flex gap-6 animate-scroll-right">
+      <div className="relative mb-4 sm:mb-6 md:mb-8">
+        <div className="flex gap-4 sm:gap-6 animate-scroll-right">
           {row1Images.map((img, idx) => (
             <div
               key={`row1-${idx}`}
-              className="flex-shrink-0 w-80 h-64 rounded-2xl overflow-hidden cursor-pointer group perspective-1000"
+              className="flex-shrink-0 w-64 sm:w-72 md:w-80 h-48 sm:h-56 md:h-64 rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer group perspective-1000"
               onClick={() => setSelectedImage(img)}
             >
               <img
@@ -50,11 +50,11 @@ const Showcase: React.FC = () => {
 
       {/* Второй ряд - прокрутка влево */}
       <div className="relative">
-        <div className="flex gap-6 animate-scroll-left">
+        <div className="flex gap-4 sm:gap-6 animate-scroll-left">
           {row2Images.map((img, idx) => (
             <div
               key={`row2-${idx}`}
-              className="flex-shrink-0 w-80 h-64 rounded-2xl overflow-hidden cursor-pointer group perspective-1000"
+              className="flex-shrink-0 w-64 sm:w-72 md:w-80 h-48 sm:h-56 md:h-64 rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer group perspective-1000"
               onClick={() => setSelectedImage(img)}
             >
               <img
