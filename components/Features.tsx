@@ -52,14 +52,19 @@ const Features: React.FC = () => {
 
   return (
     <section className="py-20 relative overflow-hidden">
-      {/* Статичный фон с изображением */}
+      {/* Оптимизированный видео фон */}
       <div className="absolute inset-0 z-0">
-        <div 
-          className="w-full h-full bg-cover bg-center blur-sm opacity-10"
-          style={{ backgroundImage: 'url(/images/gallery/photo1.jpg)' }}
-        ></div>
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-15"
+        >
+          <source src="/videos/features-bg.mp4" type="video/mp4" />
+        </video>
         {/* Градиентный оверлей для лучшей читаемости */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/70 to-black/85"></div>
       </div>
 
       {/* Контент поверх видео */}
