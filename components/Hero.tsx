@@ -77,7 +77,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Правая колонка - Spline 3D */}
-          <div className="absolute bottom-0 left-0 right-0 md:relative md:flex-1 h-[360px] md:h-auto md:min-h-[500px] scale-[1.25] sm:scale-[1.1] md:scale-100 z-10" style={{ transformOrigin: 'center bottom' }}>
+          <div className="absolute bottom-0 left-0 right-0 md:relative md:flex-1 h-[432px] md:h-auto md:min-h-[500px] scale-[1.5] sm:scale-[1.3] md:scale-100 z-10" style={{ transformOrigin: 'center bottom' }}>
             {splineSceneUrl ? (
               <SplineScene 
                 scene={splineSceneUrl}
