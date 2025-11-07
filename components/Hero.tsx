@@ -20,8 +20,23 @@ const Hero: React.FC = () => {
     <section id="hero" className="relative min-h-[80vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden py-20 md:py-32">
       {/* Контейнер с Card стилем */}
       <div className="w-full max-w-7xl mx-auto px-4 h-full min-h-[500px] md:min-h-[600px] bg-black/[0.96] rounded-2xl border border-glass-border relative overflow-hidden">
+        
+        {/* Видео фон */}
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-20"
+          >
+            <source src="/videos/features-bg.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80"></div>
+        </div>
+
         {/* Vortex Background анимация */}
-        <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl pointer-events-none">
+        <div className="absolute inset-0 z-[1] overflow-hidden rounded-2xl pointer-events-none">
           <Vortex
             backgroundColor="transparent"
             particleCount={200}

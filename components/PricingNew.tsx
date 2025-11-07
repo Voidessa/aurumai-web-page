@@ -3,6 +3,7 @@ import { LiquidButton } from "./ui/liquid-button";
 import { useMediaQuery } from "../hooks/use-media-query";
 import { cn } from "../lib/utils";
 import { motion } from "framer-motion";
+import { Sparkles, AlertTriangle } from "lucide-react";
 
 // Simple Check icon component (since we don't have lucide-react as icon library)
 const CheckIcon = ({ className }: { className?: string }) => (
@@ -192,11 +193,11 @@ export function Pricing({
                 className="relative text-sm md:text-base font-bold shadow-2xl shadow-cyan-500/50 border-2 border-cyan-400"
               >
                 <span className="flex items-center gap-2">
-                  <span className="text-2xl animate-bounce">🎉</span>
+                  <Sparkles className="w-5 h-5 animate-bounce" />
                   <span className="bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">
                     Получить скидку -50%
                   </span>
-                  <span className="text-2xl animate-bounce">🎉</span>
+                  <Sparkles className="w-5 h-5 animate-bounce" />
                 </span>
               </LiquidButton>
             </motion.div>
@@ -209,8 +210,9 @@ export function Pricing({
               transition={{ duration: 0.3 }}
               className="bg-fg/10 border-2 border-fg px-6 py-3 rounded-full"
             >
-              <span className="text-fg font-bold text-sm md:text-base">
-                ✨ Скидка -50% активирована!
+              <span className="text-fg font-bold text-sm md:text-base flex items-center gap-2 justify-center">
+                <Sparkles className="w-4 h-4" />
+                Скидка -50% активирована!
               </span>
             </motion.div>
           )}
@@ -318,8 +320,9 @@ export function Pricing({
                     viewport={{ once: true }}
                     className="mt-3 px-4 py-2 bg-accent/20 border border-accent/40 rounded-lg"
                   >
-                    <span className="text-accent font-bold text-sm">
-                      ⚠️ Осталось {plan.spotsLeft} мест
+                    <span className="text-accent font-bold text-sm flex items-center gap-2 justify-center">
+                      <AlertTriangle className="w-4 h-4" />
+                      Осталось {plan.spotsLeft} мест
                     </span>
                   </motion.div>
                 )}
