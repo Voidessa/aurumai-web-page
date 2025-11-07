@@ -112,19 +112,14 @@ export function Pricing({
 
   return (
     <section id="pricing" className="py-20 md:py-28 relative overflow-hidden">
-      {/* Видео фон */}
+      {/* Статичный фон с изображением */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-10"
-        >
-          <source src="/videos/pricing-bg.mov" type="video/quicktime" />
-        </video>
+        <div 
+          className="w-full h-full bg-cover bg-center blur-sm opacity-10"
+          style={{ backgroundImage: 'url(/images/gallery2/photo3.jpg)' }}
+        ></div>
         {/* Градиентный оверлей */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/95 via-black/80 to-black/95"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
