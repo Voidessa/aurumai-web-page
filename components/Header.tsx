@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LiquidButton } from './ui/liquid-button';
-import { Send } from 'lucide-react';
+import { Send, Instagram } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -94,16 +94,30 @@ const Header: React.FC = () => {
                 </a>
               </LiquidButton>
               
-              {/* Telegram Icon - placeholder для будущей ссылки */}
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/30 hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300 group"
-                aria-label="Telegram"
-              >
-                <Send className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
-              </a>
+              {/* Social Media Icons */}
+              <div className="hidden md:flex items-center gap-2">
+                {/* Telegram */}
+                <a
+                  href="https://t.me/+4JZL_d-1otBjZTZi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/30 hover:bg-cyan-500/20 hover:border-cyan-500/50 transition-all duration-300 group"
+                  aria-label="Telegram"
+                >
+                  <Send className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
+                </a>
+                
+                {/* Instagram */}
+                <a
+                  href="https://www.instagram.com/aurummediauz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-pink-500/10 border border-pink-500/30 hover:bg-pink-500/20 hover:border-pink-500/50 transition-all duration-300 group"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-5 h-5 text-pink-400 group-hover:text-pink-300 transition-colors" />
+                </a>
+              </div>
             </div>
             {/* Mobile Nav Button */}
             <div className="md:hidden">
